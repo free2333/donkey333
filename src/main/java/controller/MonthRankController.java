@@ -4,6 +4,7 @@ import domain.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import service.MonthRankService;
 
 import java.util.List;
@@ -17,8 +18,9 @@ public class MonthRankController {
     private MonthRankService monthRankService;
 
     @RequestMapping
-    public List<Article> showMonthRank(int userID){
-        System.out.println("userID="+userID);
+    @ResponseBody
+    public List<Article> showMonthRank(){
+//        System.out.println("userID="+userID);
         return monthRankService.getArticle();
     }
 }
