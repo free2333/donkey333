@@ -15,7 +15,7 @@ public class MonthRankService {
     @Autowired
     private MonthRankMapper monthRankMapper;
 
-    public List<Article> getArticleById(){
-        return monthRankMapper.getArticleById();
+    public List<Article> getArticle(){
+        return monthRankMapper.getArticle();
     }
 }

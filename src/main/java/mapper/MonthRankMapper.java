@@ -15,5 +15,5 @@ public interface MonthRankMapper {
             "where date" +
             "BETWEEN str_to_date('2017-7-1','%Y-%m-%d') AND str_to_date('2017-7-31','%Y-%m-%d'))" +
             "ORDER BY upNum DESC")
-    public List<Article> getArticleById();
+    public List<Article> getArticle();
 }
