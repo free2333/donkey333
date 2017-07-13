@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="css/fullcalendar.min.css">
+    <link rel="stylesheet" href="css/fullcalendar.print.css" media="print">
+    <link rel="stylesheet" href="css/AdminLTE.min.css">
+    <link rel="stylesheet" href="css/_all-skins.min.css">
+    <link rel="stylesheet" href="css/blue.css">
+    <style>
         #divleft{
             border-style: solid;
             border-width:1px;
             border-color: #f5f5f5;
-            width:100px;
-            height:600px;
+            width:249.75px;
+            height:41px;
             float:left;
         }
         #divright{
@@ -21,22 +29,88 @@
             float:left;
         }
     </style>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script type="text/javascript" language="JavaScript">
+        $().ready(function () {
+//            alert("asd");
+            $.getJSON('/share/showMonthRank',function(data){
+//                alert("data"+data);
+                for(var i=0;i<3;i++){
+                    var $title=$("<p/>").text(data[i].title);
+                    var $author=$("<p/>").text(data[i].username);
+                    var $content=$("<p/>").text(data[i].content.substring(0,30)+"...");
+                    var $article=$("<div/>");
+                    $article.append($title);
+                    $article.append($author);
+                    $article.append($content);
+                    $("#divright").append($article);
+                }
+            });
+//            alert("add");
+            var mydate=new Date();
+            var month=mydate.getMonth()+1;
+            for(var i=0;i<12;i++){
+                $("#month").append("<li><a id="+i+">"+month+"月"+"</a></li>");
+                month--;
+                if(month==0){
+                    break;
+                }
+            }
+            $("li").on("click",function(){
+                $.getJSON("/share/showMonthRankByMonth",{time:$(this).text()},function(data2){
+                    $("#divright").empty();
+                    for(var i=0;i<3;i++){
+                        var $title1=$("<p/>").text(data2[i].title);
+                        $title1.attr("id","title");
+                        var $author1=$("<p/>").text(data2[i].username);
+                        var $content1=$("<p/>").text(data2[i].content.substring(0,30)+"...");
+                        var $article1=$("<div/>");
+                        $article1.append($title1);
+                        $article1.append($author1);
+                        $article1.append($content1);
+                        $("#divright").append($article1);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
-<body>
-    <div id="divleft">
-        <div id="divltop">
-            <p id="seven">7月</p>
-            <p id="six">6月</p>
-            <p id="five">5月</p>
-            <p>更多>></p>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="box box-solid" id="divleft">
+        <div class="box-header with-border">
+            <h3 class="box-title">月榜</h3>
+
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked" id="month">
+                <!--<li><a id="one"><i class="fa fa-circle-o text-red"></i> </a></li>-->
+                <!--<li><a id="two"><i class="fa fa-circle-o text-yellow"></i> 6月</a></li>-->
+                <!--<li><a id="three"><i class="fa fa-circle-o text-light-blue"></i> 5月</a></li>-->
+            </ul>
         </div>
     </div>
     <div id="divright">
-        <div id="divrtop">
-            <p>dongdongdong</p>
-            <p>dongdongdong</p>
-            <p>dongdongdong</p>
-        </div>
+
     </div>
+
+
+    <!-- jQuery 2.2.3 -->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="js/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="js/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="js/app.min.js"></script>
+    <!-- iCheck -->
+    <script src="js/icheck.min.js"></script>
+    <!-- Page Script -->
 </body>
 </html>

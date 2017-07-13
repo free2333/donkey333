@@ -3,11 +3,9 @@ package domain;
 import java.util.Date;
 
 /**
- * TODO()
- * Created by zqq on 2017/7/10 0010.
+ * Created by Administrator on 2017/7/12.
  */
-public class Article {
-
+public class ArticlesAndArticlevisitions {
     private Integer articleID;
     private String title;
     private String username;
@@ -17,13 +15,16 @@ public class Article {
     private Integer downNum;
     private Integer flowers;
     private Integer photoID;
+    private Date date;
+    private String state;
+    private String writeTimeChar;
 
-    public Integer getPhotoID() {
-        return photoID;
+    public String getWriteTimeChar() {
+        return writeTimeChar;
     }
 
-    public void setPhotoID(Integer photoID) {
-        this.photoID = photoID;
+    public void setWriteTimeChar(String writeTimeChar) {
+        this.writeTimeChar = writeTimeChar;
     }
 
     public Integer getArticleID() {
@@ -88,5 +89,29 @@ public class Article {
 
     public void setFlowers(Integer flowers) {
         this.flowers = flowers;
+    }
+
+    public Integer getPhotoID() {
+        return photoID;
+    }
+
+    public void setPhotoID(Integer photoID) {
+        this.photoID = photoID;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

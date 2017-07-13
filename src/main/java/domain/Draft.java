@@ -1,12 +1,12 @@
 package domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * TODO()
  * Created by zqq on 2017/7/10 0010.
  */
-public class draft {
+public class Draft {
 
     private Integer draftsID;
     private String title;

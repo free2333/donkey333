@@ -21,6 +21,34 @@
             float:left;
         }
     </style>
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="../js/jquery.validate.js"></script>
+    <script type="text/javascript" language="JavaScript">
+        $().ready(function () {
+//            alert("asd");
+            $.getJSON('/share/showMonthRank',function(data){
+//                alert("data"+data);
+                for(var i=0;i<3;i++){
+                    var $title=$("<p/>").text(data[i].title);
+                    var $author=$("<p/>").text(data[i].username);
+                    var $content=$("<p/>").text(data[i].content.su);
+                    var $article=$("<div/>");
+                    $article.append($title);
+                    $article.append($author);
+                    $article.append($content);
+                    $("#divright").append($article);
+                }
+            });
+//            alert("add");
+            var mydate=new Date();
+            $("#seven").text(mydate.getMonth()+"月").click(function () {
+                alert(mydate.getMonth());
+            });
+        });
+        $("#seven").click(function () {
+            $.getJSON("/share/")
+        });
+    </script>
 </head>
 <body>
     <div id="divleft">
@@ -28,15 +56,12 @@
             <p id="seven">7月</p>
             <p id="six">6月</p>
             <p id="five">5月</p>
+            <p id="four">4月</p>
             <p>更多>></p>
         </div>
     </div>
     <div id="divright">
-        <div id="divrtop">
-            <p>dongdongdong</p>
-            <p>dongdongdong</p>
-            <p>dongdongdong</p>
-        </div>
+
     </div>
 </body>
 </html>
